@@ -5,7 +5,7 @@ on:
     paths:
       - 'reports/*.md'
   schedule:
-    - cron: '0 12 * * 1-5'  # UTC 12:00 = Beijing 20:00
+    - cron: '0 12 * * 1-5'
 
 jobs:
   send-email:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Send review email
         env:
-          RESEND_API_KEY: ${{{{ secrets.RESEND_API_KEY }}}}
-          EMAIL_TO: ${{{{ secrets.EMAIL_TO }}}}
-          EMAIL_FROM: ${{{{ secrets.EMAIL_FROM }}}}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
         run: python send_review_email.py --md "reports/review_*.md"
